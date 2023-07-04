@@ -1,9 +1,12 @@
-import mysql from "mysql"
+import { MongoClient, ServerApiVersion } from 'mongodb';
+import dotenv from 'dotenv';
+dotenv.config();
 
-export const db = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"root",
-    database:"soundcheck"
-})
+export const client = new MongoClient(process.env.URI, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
 
