@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { client } from "../db.js";
+import client  from "../db.js";
 
 export const getPosts = async (req, res) => {
   try {
