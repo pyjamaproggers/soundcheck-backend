@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { client } from "../db.js";
+import client from "../db.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -8,12 +8,12 @@ export const login = async (req, res) => {
     const databaseName = "soundcheck";
     const collectionName = "soundcheckusers";
 
-    // Specify the database - DO THIS NEXT TIME WHENEVER
+    // Specify the database
     const db = client.db(databaseName);
     
     const username = req.body.username;
 
-    // Specify the collection - THIS FUCKING PAIN IN THE ASS
+    // Specify the collection
     const collection = db.collection(collectionName);
     
     const user = await collection.findOne({ username });
@@ -29,11 +29,14 @@ export const login = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user.id }, "jwtkey");
+    console.log(token)
     const { password, ...other } = user;
 
     res
       .cookie("access_token", token, {
         httpOnly: true,
+        sameSite: "none",
+        secure: true,
       })
       .status(200)
       .json(other);
