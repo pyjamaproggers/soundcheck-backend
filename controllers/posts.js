@@ -4,7 +4,7 @@ import client  from "../db.js";
 export const getPosts = async (req, res) => {
   try {
     const cat = req.query.cat;
-    const collection = client.db().collection("posts");
+    const collection = client.db("soundcheck").collection("posts");
     const query = cat ? { cat } : {};
 
     const data = await collection.find(query).toArray();
@@ -18,7 +18,7 @@ export const getPosts = async (req, res) => {
 export const getPost = async (req, res) => {
   try {
     const postId = req.params.id;
-    const collection = client.db().collection("posts");
+    const collection = client.db("soundcheck").collection("posts");
 
     const data = await collection.findOne({ _id: postId });
     if (!data) {
@@ -33,25 +33,26 @@ export const getPost = async (req, res) => {
 };
 
 export const addPost = async (req, res) => {
+  console.log("ADding post")
   try {
     const token = req.cookies.access_token;
-    if (!token) {
-      return res.status(401).json("Not authenticated!");
-    }
+    // if (!token) {
+    //   return res.status(401).json("Not authenticated!");
+    // }
 
     jwt.verify(token, "jwtkey", async (err, userInfo) => {
-      if (err) {
-        return res.status(403).json("Token is not valid!");
-      }
+      // if (err) {
+      //   return res.status(403).json("Token is not valid!");
+      // }
 
-      const collection = client.db().collection("posts");
+      const collection = client.db("soundcheck").collection("posts");
       const post = {
         title: req.body.title,
         desc: req.body.desc,
         img: req.body.img,
-        cat: req.body.cat,
+        // cat: req.body.cat,
         date: req.body.date,
-        uid: userInfo.id,
+        // uid: userInfo.id,
       };
 
       await collection.insertOne(post);
@@ -76,7 +77,7 @@ export const deletePost = async (req, res) => {
       }
 
       const postId = req.params.id;
-      const collection = client.db().collection("posts");
+      const collection = client.db("soundcheck").collection("posts");
 
       const result = await collection.deleteOne({ _id: postId, uid: userInfo.id });
       if (result.deletedCount === 0) {
@@ -104,7 +105,7 @@ export const updatePost = async (req, res) => {
       }
 
       const postId = req.params.id;
-      const collection = client.db().collection("posts");
+      const collection = client.db("soundcheck").collection("posts");
 
       const updatedPost = {
         $set: {

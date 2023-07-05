@@ -29,6 +29,7 @@ export const login = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user.id }, "jwtkey");
+    console.log(token)
     const { password, ...other } = user;
 
     res
