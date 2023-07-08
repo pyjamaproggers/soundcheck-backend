@@ -10,6 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+app.use("/postCoverImages", express.static("postCoverImages"));
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {

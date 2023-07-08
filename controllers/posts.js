@@ -1,12 +1,13 @@
 import jwt from "jsonwebtoken";
 import client  from "../db.js";
+import { ObjectId } from 'mongodb';
 
 export const getPosts = async (req, res) => {
   try {
     const cat = req.query.cat;
     const collection = client.db("soundcheck").collection("posts");
     const query = cat ? { cat } : {};
-
+    
         const data = await collection.find(query).toArray();
         return res.status(200).json(data);
     } catch (error) {
@@ -16,21 +17,21 @@ export const getPosts = async (req, res) => {
 };
 
 export const getPost = async (req, res) => {
-  try {
-    const postId = req.params.id;
-    const collection = client.db("soundcheck").collection("posts");
-
-        const data = await collection.findOne({ _id: postId });
-        if (!data) {
-            return res.status(404).json("Post not found!");
-        }
-
-        return res.status(200).json(data);
+    try {
+      const postId = req.params.id;
+      const collection = client.db("soundcheck").collection("posts");
+      const data = await collection.findOne({ _id: new ObjectId(postId) });
+      if (!data) {
+        return res.status(404).json("Post not found!");
+      }
+  
+      return res.status(200).json(data);
     } catch (error) {
-        console.error("Error executing query:", error);
-        return res.status(500).json(error);
+      console.error("Error executing query:", error);
+      return res.status(500).json(error);
     }
-};
+  };
+  
 
 export const addPost = async (req, res) => {
   console.log("ADding post")
