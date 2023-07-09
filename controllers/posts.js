@@ -106,6 +106,7 @@ export const updatePost = async (req, res) => {
             }
 
       const postId = req.params.id;
+      console.log("FSF")
       const collection = client.db("soundcheck").collection("posts");
 
             const updatedPost = {
@@ -117,7 +118,7 @@ export const updatePost = async (req, res) => {
                 },
             };
 
-            const result = await collection.updateOne({ _id: postId, uid: userInfo.id }, updatedPost);
+            const result = await collection.updateOne({ _id: new ObjectId(postId) }, updatedPost);
             if (result.matchedCount === 0) {
                 return res.status(403).json("You can update only your post!");
             }

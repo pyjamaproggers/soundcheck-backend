@@ -29,14 +29,14 @@ export const login = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user.id }, "jwtkey");
-    console.log(token)
+    console.log(token);
     const { password, ...other } = user;
 
     res
       .cookie("access_token", token, {
         httpOnly: true,
-        sameSite: "none",
-        secure: true,
+        sameSite: "lax",
+        secure: false, // Set secure to false for localhost development
       })
       .status(200)
       .json(other);
@@ -45,6 +45,7 @@ export const login = async (req, res) => {
     return res.status(500).json(error);
   }
 };
+
 
 export const logout = (req, res) => {
   res
