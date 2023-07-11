@@ -51,7 +51,7 @@ export const addPost = async (req, res) => {
         title: req.body.title,
         desc: req.body.desc,
         img: req.body.img,
-        // cat: req.body.cat,
+        isdraft: req.body.isdraft,
         date: req.body.date,
         // uid: userInfo.id,
       };
@@ -115,6 +115,7 @@ export const updatePost = async (req, res) => {
                     desc: req.body.desc,
                     img: req.body.img,
                     cat: req.body.cat,
+                    isdraft: req.body.isdraft,
                 },
             };
 
