@@ -37,6 +37,6 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
 
-app.listen(8800, () => {
+app.listen(process.env.PORT, () => {
     console.log("Connected!");
 });
