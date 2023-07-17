@@ -8,7 +8,7 @@ import cors from "cors";
 const app = express();
 
 app.use(cors({
-    origin: "https://statuesque-selkie-495af1.netlify.app/", 
+    origin: "https://statuesque-selkie-495af1.netlify.app", 
     credentials: true,
   }));
   
