@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Middleware to set CORS headers
 const setCorsHeaders = (req, res, next) => {
-  res.set("Access-Control-Allow-Origin", "https://soundcheck-backend.onrender.com"); 
+  res.set("Access-Control-Allow-Origin", "https://statuesque-selkie-495af1.netlify.app"); 
   res.set("Access-Control-Allow-Credentials", "true");
   next();
 };
