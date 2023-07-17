@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Middleware to set CORS headers
 const setCorsHeaders = (req, res, next) => {
-  res.set("Access-Control-Allow-Origin", "http://localhost:3000"); // Replace with your frontend URL when we deploY
+  res.set("Access-Control-Allow-Origin", "https://soundcheck-backend.onrender.com"); 
   res.set("Access-Control-Allow-Credentials", "true");
   next();
 };
