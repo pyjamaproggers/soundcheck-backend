@@ -8,7 +8,7 @@ import cors from "cors";
 const app = express();
 
 app.use(cors({
-    origin: "http://localhost:3000", // Replace with your frontend URL when we deploy
+    origin: "https://statuesque-selkie-495af1.netlify.app/", 
     credentials: true,
   }));
   
