@@ -14,11 +14,11 @@ app.use(cors({
   
 app.use(express.json());
 app.use(cookieParser());
-app.use("/postCoverImages", express.static("postCoverImages"));
+app.use("https://soundcheck-backend.onrender.com/postCoverImages", express.static("postCoverImages"));
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "./postCoverImages/");
+        cb(null, "https://soundcheck-backend.onrender.com/postCoverImages/");
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + file.originalname);
@@ -29,7 +29,7 @@ const upload = multer({ storage });
 
 app.post("/api/upload", upload.single("file"), function (req, res) {
     const file = req.file;
-    const imageUrl = "/postCoverImages/" + file.filename;
+    const imageUrl = "https://soundcheck-backend.onrender.com/postCoverImages/" + file.filename;
     console.log(req);
     res.status(200).json({ imageUrl });
   });
