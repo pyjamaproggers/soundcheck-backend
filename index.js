@@ -1,6 +1,7 @@
 import express from "express";
 import authRoutes from "./routes/auth.js";
 import postRoutes from "./routes/posts.js";
+import playlistRoutes from "./routes/playlists.js"
 import cookieParser from "cookie-parser";
 import multer from "multer";
 import cors from "cors";
@@ -36,6 +37,7 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
+app.use("/api/playlists", playlistRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log("Connected!");
