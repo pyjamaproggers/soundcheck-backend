@@ -15,11 +15,11 @@ app.use(cors({
   
 app.use(express.json());
 app.use(cookieParser());
-app.use("https://soundcheck-backend.onrender.com/postCoverImages", express.static("postCoverImages"));
+app.use("/postCoverImages", express.static("postCoverImages"));
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "https://soundcheck-backend.onrender.com/postCoverImages/");
+        cb(null, "./postCoverImages");
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + file.originalname);
