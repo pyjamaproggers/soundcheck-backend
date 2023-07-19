@@ -29,10 +29,27 @@ const upload = multer({ storage: storage });
 
 app.post("/api/upload", upload.single("file"), function (req, res) {
     const file = req.file;
-    const imageUrl = "https://soundcheck-backend.onrender.com/postCoverImages/" + file.filename;
-    console.log(req);
+    // Accessing the image details
+    const originalname = file.originalname;
+    const mimetype = file.mimetype;
+    const destination = file.destination;
+    const filename = file.filename;
+    const path = file.path;
+    const size = file.size;
+
+    // Creating the full image URL
+    const imageUrl = "https://soundcheck-backend.onrender.com/" + path;
+
+    console.log("File Details:");
+    console.log("Original Name:", originalname);
+    console.log("Mimetype:", mimetype);
+    console.log("Destination:", destination);
+    console.log("Filename:", filename);
+    console.log("Path:", path);
+    console.log("Size:", size);
+
     res.status(200).json({ imageUrl });
-  });
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
