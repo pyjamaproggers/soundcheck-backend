@@ -9,46 +9,49 @@ import cors from "cors";
 const app = express();
 
 app.use(cors({
-    origin: "https://statuesque-selkie-495af1.netlify.app", 
-    credentials: true,
-  }));
-  
+  origin: "https://statuesque-selkie-495af1.netlify.app", 
+  credentials: true,
+}));
+
 app.use(express.json());
 app.use(cookieParser());
 
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "./postCoverImages/");
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + file.originalname);
-    },
+  destination: function (req, file, cb) {
+    cb(null, "./postCoverImages/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + file.originalname);
+  },
 });
 
 const upload = multer({ storage: storage });
 
+// Serve static files from the "postCoverImages" directory
+app.use("/postCoverImages", express.static("postCoverImages"));
+
 app.post("/api/upload", upload.single("file"), function (req, res) {
-    const file = req.file;
-    // Accessing the image details
-    const originalname = file.originalname;
-    const mimetype = file.mimetype;
-    const destination = file.destination;
-    const filename = file.filename;
-    const path = file.path;
-    const size = file.size;
+  const file = req.file;
+  // Accessing the image details
+  const originalname = file.originalname;
+  const mimetype = file.mimetype;
+  const destination = file.destination;
+  const filename = file.filename;
+  const path = file.path;
+  const size = file.size;
 
-    // Creating the full image URL
-    const imageUrl = "https://soundcheck-backend.onrender.com/" + path;
+  // Creating the full image URL
+  const imageUrl = "https://soundcheck-backend.onrender.com/" + path;
 
-    console.log("File Details:");
-    console.log("Original Name:", originalname);
-    console.log("Mimetype:", mimetype);
-    console.log("Destination:", destination);
-    console.log("Filename:", filename);
-    console.log("Path:", path);
-    console.log("Size:", size);
+  console.log("File Details:");
+  console.log("Original Name:", originalname);
+  console.log("Mimetype:", mimetype);
+  console.log("Destination:", destination);
+  console.log("Filename:", filename);
+  console.log("Path:", path);
+  console.log("Size:", size);
 
-    res.status(200).json({ imageUrl });
+  res.status(200).json({ imageUrl });
 });
 
 app.use("/api/auth", authRoutes);
@@ -56,5 +59,5 @@ app.use("/api/posts", postRoutes);
 app.use("/api/playlists", playlistRoutes);
 
 app.listen(process.env.PORT, () => {
-    console.log("Connected!");
+  console.log("Connected!");
 });
