@@ -15,18 +15,17 @@ app.use(cors({
   
 app.use(express.json());
 app.use(cookieParser());
-app.use("/postCoverImages", express.static("postCoverImages"));
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "./postCoverImages");
+        cb(null, "./postCoverImages/");
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + file.originalname);
     },
 });
 
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 
 app.post("/api/upload", upload.single("file"), function (req, res) {
     const file = req.file;
