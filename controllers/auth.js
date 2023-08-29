@@ -36,7 +36,7 @@ export const login = async (req, res) => {
       .cookie("access_token", token, {
         httpOnly: true,
         sameSite: "lax",
-        secure: false, // Set secure to false for localhost development
+        secure: true, // Set secure to false for localhost development
       })
       .status(200)
       .json(other);
