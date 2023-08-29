@@ -9,7 +9,7 @@ import cors from "cors";
 const app = express();
 
 app.use(cors({
-  origin: ["https://statuesque-selkie-495af1.netlify.app", "http://localhost:3000"],
+  origin: "http://localhost:3000",
   credentials: true,
 }));
 
