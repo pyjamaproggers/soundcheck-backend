@@ -4,7 +4,7 @@ import { addPlaylist, removePlaylist, getPlaylists } from "../controllers/playli
 const router = express.Router();
 
 const setCorsHeaders = (req, res, next) => {
-  res.set("Access-Control-Allow-Origin", "https://statuesque-selkie-495af1.netlify.app"); 
+  res.set("Access-Control-Allow-Origin", ["https://statuesque-selkie-495af1.netlify.app", "http://localhost:3000"]); 
   res.set("Access-Control-Allow-Credentials", "true");
   next();
 };
