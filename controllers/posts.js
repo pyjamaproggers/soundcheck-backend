@@ -69,14 +69,14 @@ export const addPost = async (req, res) => {
 export const deletePost = async (req, res) => {
     try {
         const token = req.cookies.access_token;
-        if (!token) {
-            return res.status(401).json("Not authenticated!");
-        }
+        // if (!token) {
+        //     return res.status(401).json("Not authenticated!");
+        // }
 
         jwt.verify(token, "jwtkey", async (err, userInfo) => {
-            if (err) {
-                return res.status(403).json("Token is not valid!");
-            }
+            // if (err) {
+            //     return res.status(403).json("Token is not valid!");
+            // }
 
       const postId = req.params.id;
       const collection = client.db("soundcheck").collection("posts");
