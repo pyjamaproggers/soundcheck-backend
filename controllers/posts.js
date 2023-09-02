@@ -69,6 +69,7 @@ export const addPost = async (req, res) => {
 
 export const deletePost = async (req, res) => {
     try {
+        
         const token = req.cookies.access_token;
         // if (!token) {
         //     return res.status(401).json("Not authenticated!");
@@ -80,8 +81,9 @@ export const deletePost = async (req, res) => {
             // }
 
       const postId = req.params.id;
+      console.log(postId)
       const collection = client.db("soundcheck").collection("posts");
-
+    
             const result = await collection.deleteOne({ _id: postId, uid: userInfo.id });
             if (result.deletedCount === 0) {
                 return res.status(403).json("You can delete only your post!");
