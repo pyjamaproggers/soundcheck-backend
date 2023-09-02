@@ -54,6 +54,7 @@ export const addPost = async (req, res) => {
         homeImg: req.body.homeImg,
         isdraft: req.body.isdraft,
         date: req.body.date,
+        gridNumber: req.body.gridNumber
         // uid: userInfo.id,
       };
 
@@ -117,6 +118,7 @@ export const updatePost = async (req, res) => {
                     homeImg: req.body.homeImg,
                     cat: req.body.cat,
                     isdraft: req.body.isdraft,
+                    gridNumber: req.body.gridNumber
                 },
             };
 
