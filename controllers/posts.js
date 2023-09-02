@@ -84,7 +84,7 @@ export const deletePost = async (req, res) => {
       console.log(postId)
       const collection = client.db("soundcheck").collection("posts");
     
-            const result = await collection.deleteOne({ _id: postId, uid: userInfo.id });
+            const result = await collection.deleteOne({ _id: new ObjectId(postId)});
             if (result.deletedCount === 0) {
                 return res.status(403).json("You can delete only your post!");
             }
