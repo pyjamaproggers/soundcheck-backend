@@ -4,7 +4,7 @@ import { addPlaylist, removePlaylist, getPlaylists } from "../controllers/playli
 const router = express.Router();
 
 const setCorsHeaders = (req, res, next) => {
-  res.set("Access-Control-Allow-Origin", "http://soundcheckindia.in"); 
+  res.set("Access-Control-Allow-Origin", "https://soundcheckindia.in"); 
   res.set("Access-Control-Allow-Credentials", "true");
   next();
 };

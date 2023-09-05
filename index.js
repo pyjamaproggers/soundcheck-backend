@@ -9,7 +9,7 @@ import cors from "cors";
 const app = express();
 
 app.use(cors({
-  origin: "http://soundcheckindia.in",
+  origin: "https://soundcheckindia.in",
   credentials: true,
 }));
 
