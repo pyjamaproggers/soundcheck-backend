@@ -4,7 +4,7 @@ import { login, logout } from "../controllers/auth.js";
 const router = express.Router();
 
 const setCorsHeaders = (req, res, next) => {
-  res.set("Access-Control-Allow-Origin", "https://statuesque-selkie-495af1.netlify.app/"); 
+  res.set("Access-Control-Allow-Origin", "http://soundcheckindia.in"); 
   res.set("Access-Control-Allow-Credentials", "true");
   next();
 };
